@@ -1,6 +1,6 @@
 This is a simpler version of the aggregation script i wrote a few years back. 
 
-What this version does is look through several playlists, get all the tracks added since last Saturday (midnight UTC) and add them all to one one single playlist. 
+What this version does is look through several playlists, get all the tracks added since last Saturday (midnight UTC) and add them all to one single playlist. 
 
 These instructions for running the script are for Windows users and made with ChatGPT.
 
@@ -50,7 +50,7 @@ These instructions for running the script are for Windows users and made with Ch
    ```
    python aggregate_playlists.py
    ```
-   - It will collect tracks added since last Saturday midnight UTC from playlists mentioned
+   - It will collect tracks added to the playlists from last Saturday onwards and put them all in one playlist
 
 9. Scheduling with Task Scheduler
    - Open Task Scheduler -> Create Basic Task
