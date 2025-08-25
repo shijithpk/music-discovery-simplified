@@ -56,7 +56,7 @@ def count_playlist_tracks(sp, playlist_id, market='US', delay=5):
 	return items
 
 
-def remove_oldest_tracks_v2(sp, playlist_id, items, max_tracks=10500, batch_size=50):
+def remove_oldest_tracks_v2(sp, playlist_id, items, max_tracks=9500, batch_size=50):
 	"""
 	Remove the oldest tracks from a playlist if it's getting full.
 	
@@ -75,8 +75,8 @@ def remove_oldest_tracks_v2(sp, playlist_id, items, max_tracks=10500, batch_size
 	# Calculate how many tracks we need to remove
 	tracks_to_remove = current_count - max_tracks	
 	
-	# Get the oldest tracks (first items in the list, assuming items are in chronological order)
-	oldest_items = items[:tracks_to_remove]
+	# Get the oldest tracks (last items in playlist, assuming newest items are at top)
+	oldest_items = items[:-tracks_to_remove]
 	
 	# Extract track IDs, handling potential None values
 	track_ids_to_remove = []
@@ -100,8 +100,8 @@ final_playlist_id = re.search(r'playlist/([A-Za-z0-9]+)', final_playlist_url).gr
 # Count tracks in playlist
 items_remaining_list = count_playlist_tracks(sp, final_playlist_id)
 
-# Remove oldest tracks if the playlist is getting full, anything older than the 10,500th track gets removed
-remove_oldest_tracks_v2(sp, final_playlist_id, items_remaining_list, max_tracks=10500, batch_size=50)
+# Remove oldest tracks if the playlist is getting full, anything older than the 9,500th track gets removed
+remove_oldest_tracks_v2(sp, final_playlist_id, items_remaining_list, max_tracks=9500, batch_size=50)
 
 def previous_saturday_midnight_utc():
 	now = datetime.now(timezone.utc)
