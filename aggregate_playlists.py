@@ -37,7 +37,7 @@ sp = spotipy.Spotify(
 						client_secret= client_secret,
 						redirect_uri= redirect_url,
 						scope=scope,
-						open_browser=False
+						open_browser=True
 					),
 		requests_timeout=30,
 		retries=5,
@@ -76,7 +76,7 @@ def remove_oldest_tracks_v2(sp, playlist_id, items, max_tracks=9500, batch_size=
 	tracks_to_remove = current_count - max_tracks	
 	
 	# Get the oldest tracks (last items in playlist, assuming newest items are at top)
-	oldest_items = items[:-tracks_to_remove]
+	oldest_items = items[-tracks_to_remove:]
 	
 	# Extract track IDs, handling potential None values
 	track_ids_to_remove = []
